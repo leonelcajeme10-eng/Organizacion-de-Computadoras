@@ -1,0 +1,41 @@
+section .data
+num1 db 5          ; Primer número (byte)
+num2 db 11         ; Segundo número (byte)
+result db 0        ; Variable para almacenar el resultado
+msg db 'Resultado: ', 0   ; Cadena a imprimir
+
+section .bss
+buffer resb 4      ; Buffer para guardar el carácter convertido a ASCII
+
+section .text
+global _start
+
+_start:
+    mov al, [num1]     ; Carga num1 en AL
+    add al, [num2]     ; Suma num2 a AL
+    mov [result], al   ; Guarda el resultado en memoria
+
+    ; Convertir el resultado numérico a su código ASCII
+    movzx eax, byte [result] ; Extiende el byte a 32 bits sin signo
+    add eax, 48        ; Suma 48 ('0' en ASCII) para obtener el carácter ASCII del número
+
+    mov [buffer], al   ; Guarda en buffer el carácter a imprimir
+
+    ; Imprimir el texto "Resultado: "
+    mov eax, 4         ; syscall write
+    mov ebx, 1         ; descriptor STDOUT
+    mov ecx, msg       ; dirección del texto
+    mov edx, 11        ; longitud
+    int 0x80
+
+    ; Imprimir el carácter convertido
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, buffer
+    mov edx, 1
+    int 0x80
+
+    ; Salir del programa
+    mov eax, 1         ; syscall exit
+    xor ebx, ebx
+    int 0x80
