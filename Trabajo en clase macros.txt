@@ -1,0 +1,55 @@
+; ================================
+; MACRO PARA IMPRIMIR UN ENTERO
+; ================================
+
+%macro print_int 1
+    mov eax, 4          ; syscall 4 = write
+    mov ebx, 1          ; file descriptor 1 = stdout
+    mov ecx, %1         ; parámetro de la macro → dirección del dato
+    mov edx, 4          ; cantidad de bytes a imprimir (un entero)
+    int 0x80            ; llamada al sistema
+%endmacro
+
+
+; ================================
+; SECCIÓN DE DATOS
+; ================================
+section .data
+    array dd 1, 2, 3, 4, 5     ; arreglo de 5 enteros (cada uno 4 bytes)
+
+
+; ================================
+; CÓDIGO PRINCIPAL
+; ================================
+section .text
+    global _start
+
+_start:
+    mov ecx, 0          ; ecx = índice del arreglo (comienza en 0)
+    mov eax, 0          ; eax = acumulador para sumar los elementos
+
+
+; ================================
+; BUCLE PARA RECORRER EL ARREGLO
+; ================================
+bucle:
+    mov ebx, [array + ecx*4]   ; cargar array[ecx] → cada entero es de 4 bytes
+    add eax, ebx               ; sumar el valor al acumulador
+
+    inc ecx                    ; aumentar índice
+    cmp ecx, 5                 ; ¿ya llegamos al elemento 5?
+    jl bucle                   ; si ecx < 5, repetir el bucle
+
+
+; ================================
+; IMPRIMIR RESULTADO
+; ================================
+    print_int eax              ; llamar la macro y pasar eax como parámetro
+
+
+; ================================
+; SALIR DEL PROGRAMA
+; ================================
+    mov eax, 1                 ; syscall exit
+    xor ebx, ebx               ; código de salida 0
+    int 0x80
