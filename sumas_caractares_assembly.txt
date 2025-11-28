@@ -1,0 +1,70 @@
+
+----IMPRIMIR A -------
+section .data
+    num1 db 33         ; Primera variable (entre 1 y 3)
+    num2 db 32        ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+                      ; Convertir el resultado a ASCII
+
+-----IMPRIMIR :-------
+section .data
+    num1 db 57         ; Primera variable (entre 1 y 3)
+    num2 db 1        ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+                      ; Convertir el resultado a ASCII
+
+-----IMPRIMIR =-------
+section .data
+    num1 db 60         ; Primera variable (entre 1 y 3)
+    num2 db 1        ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+                      ; Convertir el resultado a ASCII
+
+----IMPRIMIR ?-----
+section .data
+    num1 db 60         ; Primera variable (entre 1 y 3)
+    num2 db 3        ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+                      ; Convertir el resultado a ASCII
+
+----IMPRIMIR _-----
+section .data
+    num1 db 90         ; Primera variable (entre 1 y 3)
+    num2 db 5        ; Segunda variable (entre 1 y 3)
+    result db 0       ; Espacio para almacenar el resultado convertido a ASCII
+
+section .text
+    global _start
+
+_start:
+    mov al, [num1]    ; Cargar num1 en AL
+    add al, [num2]    ; Sumar num2 a AL
+                      ; Convertir el resultado a ASCII
