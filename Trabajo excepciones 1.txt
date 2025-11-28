@@ -1,0 +1,51 @@
+;===========================================================
+;   ESTRUCTURA TIPO x/x/x  +  MACRO PARA SUMAR SUS ELEMENTOS
+;===========================================================
+
+section .data
+estructura_x:
+    x1 dd 5
+    x2 dd 10
+    x3 dd 20
+
+mensaje_suma db "La suma de x/x/x es: ",0Ah
+resultado    dd 0
+
+
+;===========================================================
+;   MACRO PARA SUMAR TRES VALORES
+;===========================================================
+%macro SUMAR_3 3
+    mov eax, %1
+    add eax, %2
+    add eax, %3
+%endmacro
+
+
+section .text
+global _start
+_start:
+
+    ; Cargar valores de la estructura
+    mov ebx, [x1]
+    mov ecx, [x2]
+    mov edx, [x3]
+
+    ; Ejecutar macro
+    SUMAR_3 ebx, ecx, edx
+
+    mov [resultado], eax  ; guardar resultado
+
+
+    ; Imprimir mensaje
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, mensaje_suma
+    mov edx, 22
+    int 0x80
+
+
+    ; Finalizar programa
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80

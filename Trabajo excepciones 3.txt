@@ -1,0 +1,36 @@
+;===========================================================
+;       Simulación de TRY / CATCH en ensamblador
+;===========================================================
+
+_start:
+
+    ; ---- TRY ----
+    mov eax, 0        ; asumimos que no hay error
+
+    ; Simulación de error
+    mov eax, 1        ; cualquier valor != 0 es "error"
+
+    ; Si hay error → saltar a catch
+    cmp eax, 0
+    jne catch_block
+
+    ; Si NO hay error continuar
+    jmp continue_program
+
+
+; ---- CATCH ----
+catch_block:
+    ; Aquí iría el manejo de error
+    ; (log, mensaje, limpiar recursos, etc.)
+    jmp end_program
+
+
+; ---- CONTINUACIÓN NORMAL ----
+continue_program:
+    ; Código cuando no hubo error
+    jmp end_program
+
+
+; ---- FIN ----
+end_program:
+    ; final del "programa"

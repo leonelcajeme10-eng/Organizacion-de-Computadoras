@@ -1,0 +1,33 @@
+section .data
+mensaje_igual db "Los valores son iguales", 0Ah
+mensaje_dif   db "Los valores son diferentes", 0Ah
+
+section .text
+global _start
+_start:
+
+    ; Cargar valores
+    mov eax, 5
+    mov ebx, 5
+
+    ; Comparar
+    cmp eax, ebx
+    je son_iguales
+
+    ; Si NO son iguales
+    mov ecx, mensaje_dif
+    jmp imprimir
+
+son_iguales:
+    mov ecx, mensaje_igual
+
+imprimir:
+    mov eax, 4
+    mov ebx, 1
+    mov edx, 25
+    int 0x80
+
+    ; Salir
+    mov eax, 1
+    xor ebx, ebx
+    int 0x80
