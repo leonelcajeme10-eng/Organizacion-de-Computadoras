@@ -1,0 +1,20 @@
+; Leer N
+
+mov eax, N
+cmp eax, 0
+je ES_CERO
+jg ES_POSITIVO
+jl ES_NEGATIVO
+
+ES_POSITIVO:
+    ; imprimir "positivo"
+    jmp FIN
+
+ES_NEGATIVO:
+    ; imprimir "negativo"
+    jmp FIN
+
+ES_CERO:
+    ; imprimir "cero"
+
+FIN:

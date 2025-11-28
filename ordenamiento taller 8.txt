@@ -1,0 +1,15 @@
+; Leer A y B
+
+mov eax, A
+mov ebx, B
+cmp eax, ebx
+
+jle YA_ORDENADOS ; A <= B → nada que hacer
+
+; Intercambio
+mov ecx, eax
+mov eax, ebx
+mov ebx, ecx
+
+YA_ORDENADOS:
+; imprimir A, B en orden ascendente

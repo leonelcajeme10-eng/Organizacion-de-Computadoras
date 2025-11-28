@@ -1,0 +1,38 @@
+; Leer A y B (código de lectura aquí)
+
+mov eax, A
+mov ebx, B
+cmp eax, ebx
+
+je SON_IGUALES
+jg A_MAYOR
+jl B_MAYOR
+
+SON_IGUALES:
+    ; mostrar "Son iguales"
+    jmp FIN
+
+A_MAYOR:
+    ; mostrar "A es mayor"
+    jmp FIN
+
+B_MAYOR:
+    ; mostrar "B es mayor"
+    jmp FIN
+
+; Verificar si alguno es negativo
+FIN:
+cmp eax, 0
+jl A_NEGATIVO
+cmp ebx, 0
+jl B_NEGATIVO
+jmp DONE
+
+A_NEGATIVO:
+    ; mostrar "A es negativo"
+    jmp DONE
+
+B_NEGATIVO:
+    ; mostrar "B es negativo"
+
+DONE:

@@ -1,0 +1,17 @@
+; Leer A y B
+
+mov eax, A
+mov ebx, B
+add eax, ebx     ; puede activar OF
+
+jo HAY_OVERFLOW
+jno SIN_OVERFLOW
+
+HAY_OVERFLOW:
+    ; imprimir "Overflow detectado"
+    jmp FIN
+
+SIN_OVERFLOW:
+    ; imprimir "No hubo overflow"
+
+FIN:

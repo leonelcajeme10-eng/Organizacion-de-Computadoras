@@ -1,0 +1,16 @@
+; Leer N
+
+mov eax, N
+test eax, 1      ; prueba el bit 0
+
+jp ES_PAR        ; PF = 1 → par
+jnp ES_IMPAR     ; PF = 0 → impar
+
+ES_PAR:
+    ; imprimir "par"
+    jmp FIN
+
+ES_IMPAR:
+    ; imprimir "impar"
+
+FIN:

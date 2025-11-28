@@ -1,0 +1,40 @@
+; Leer A, B, C
+
+mov eax, A
+mov ebx, B
+
+; Comparar A y B
+cmp eax, ebx
+jle A_ES_MENOR_O_IGUAL
+mov min, ebx
+mov max_temp, eax
+jmp COMPARAR_CON_C
+
+A_ES_MENOR_O_IGUAL:
+mov min, eax
+mov max_temp, ebx
+
+COMPARAR_CON_C:
+mov ecx, C
+
+; Comparar con C para obtener mínimo
+cmp ecx, min
+jl C_ES_MENOR
+jmp MIN_LISTO
+
+C_ES_MENOR:
+mov min, ecx
+
+MIN_LISTO:
+
+; Comparar C con max_temp para obtener máximo
+cmp ecx, max_temp
+jg C_ES_MAYOR
+jmp MAX_LISTO
+
+C_ES_MAYOR:
+mov max, ecx
+jmp MAX_LISTO
+
+MAX_LISTO:
+; imprimir min y max

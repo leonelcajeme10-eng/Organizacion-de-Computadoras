@@ -1,0 +1,17 @@
+; Leer A y B
+
+mov eax, A
+mov ebx, B
+add eax, ebx     ; actualiza CF
+
+jc HAY_ACARREO
+jnc SIN_ACARREO
+
+HAY_ACARREO:
+    ; imprimir "Hubo acarreo"
+    jmp FIN
+
+SIN_ACARREO:
+    ; imprimir "Sin acarreo"
+
+FIN:

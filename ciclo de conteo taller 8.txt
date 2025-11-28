@@ -1,0 +1,9 @@
+mov eax, 10   ; contador desde 10
+
+CICLO:
+dec eax
+; imprimir eax
+jns CICLO     ; mientras no sea negativo sigue
+
+; termina cuando eax = -1
+
