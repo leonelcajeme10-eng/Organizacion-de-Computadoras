@@ -1,0 +1,61 @@
+;===========================================================
+;   ESTRUCTURA TIPO x/x/x  +  MACRO PARA SUMAR SUS ELEMENTOS
+;===========================================================
+
+section .data
+; Estructura simulada: X/X/X
+; Ejemplo: 5/10/20
+estructura_x:
+    x1 dd 5
+    x2 dd 10
+    x3 dd 20
+
+mensaje_suma db "La suma de x/x/x es: ",0Ah
+resultado    dd 0
+
+
+;===========================================================
+;   MACRO PARA SUMAR TRES VALORES
+;===========================================================
+%macro SUMAR_3 3
+    mov eax, %1
+    add eax, %2
+    add eax, %3
+%endmacro
+
+
+section .text
+global _start
+_start:
+
+    ; Cargar valores de la estructura
+    mov ebx, [x1]
+    mov ecx, [x2]
+    mov edx, [x3]
+
+    ; Llamamos al macro SUMAR_3
+    SUMAR_3 ebx, ecx, edx
+
+    ; Guardar resultado en memoria
+    mov [resultado], eax
+
+
+    ;===========================================================
+    ;   IMPRIMIR MENSAJE
+    ;===========================================================
+    mov ecx, mensaje_suma   ; cargar mensaje
+    mov eax, 4              ; sys_write
+    mov ebx, 1              ; stdout
+    mov edx, 22             ; longitud del mensaje
+    int 0x80
+
+    ; Aquí solo se muestra cómo se imprimiría el número,
+    ; aunque no implementamos la conversión (no es requerida)
+
+
+    ;===========================================================
+    ;   SALIR DEL PROGRAMA
+    ;===========================================================
+    mov eax, 1      ; sys_exit
+    xor ebx, ebx
+    int 0x80
